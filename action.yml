@@ -1,0 +1,12 @@
+name: "ECR Cache"
+description: "Store container images in a designated ECR repository between jobs."
+inputs:
+  repository-url:
+    description: "The URL of an ECR repository."
+    required: true
+  image-tag:
+    description: "An image tag or list of image tags."
+    required: true
+runs:
+  using: "node16"
+  main: "index.js"

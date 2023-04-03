@@ -7,8 +7,25 @@ main();
 async function main() {
     try {
         const repositoryUrl = core.getInput("repository-url");
-        const imageTags = core.getInput("image-tag").split("\n").map((str) => str.trim()).filter(Boolean);
         const runId = core.getInput("run-id");
+        const imageTag = core.getInput("image-tag") ?? "";
+        const imageLabel = core.getInput("image-label") ?? "";
+
+        if (imageTag.length === 0 && imageLabel.length === 0) {
+            throw Error("At least one of 'image-tag' or 'image-label' must be defined.")
+        }
+
+        const imageLabelTag = execFileSync("docker",
+            [
+                "images",
+                "--filter", `label=${imageLabel.trim()}`,
+                "--format", '"{{.Repository}}"'
+            ],
+            { encoding: "utf8" }
+        )
+
+        const tags = [imageTag, imageLabelTag].join("\n").split("\n").map((str) => str.trim()).filter(Boolean);
+        const uniqueTags = Array.from(new Set(tags));
 
         const password = execFileSync("aws", ["ecr", "get-login-password"]);
         execFileSync("docker", ["login", "--username", "AWS", "--password-stdin", repositoryUrl], { input: password });
@@ -24,7 +41,7 @@ async function main() {
             execFileSync("docker", ["rmi", `${repositoryUrl}:${remoteTag}`], { stdio: "inherit" });
         }
 
-        imageTags.forEach(cb);
+        uniqueTags.forEach(cb);
 
         execFileSync("docker", ["logout", repositoryUrl]);
     } catch (error) {

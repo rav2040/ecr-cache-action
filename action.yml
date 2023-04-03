@@ -6,7 +6,10 @@ inputs:
     required: true
   image-tag:
     description: "An image tag or list of image tags."
-    required: true
+    required: false
+  image-label:
+    description: "An image label."
+    required: false
   run-id:
     description: "The ID of a previous workflow run."
     required: false

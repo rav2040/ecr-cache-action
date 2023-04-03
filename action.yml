@@ -7,6 +7,9 @@ inputs:
   image-tag:
     description: "An image tag or list of image tags."
     required: true
+  run-id:
+    description: "The ID of a previous workflow run."
+    required: false
 runs:
   using: "node16"
   main: "dist/index.js"

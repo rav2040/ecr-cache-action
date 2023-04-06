@@ -10,8 +10,8 @@ inputs:
   image-label:
     description: "An image label."
     required: false
-  run-id:
-    description: "The ID of a previous workflow run."
+  run-number:
+    description: "The number of a previous workflow run."
     required: false
 runs:
   using: "node16"

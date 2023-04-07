@@ -42,3 +42,12 @@ jobs:
         with:
           commit_message: Merge build output [skip-ci]
           tagging_message: "v${{ steps.bump_version.outputs.package_version }}"
+
+      - name: Tag major version and latest
+        run: |
+          MAJOR_VERSION=$(echo ${{ steps.bump_version.outputs.package_version }} | awk -F. '{ print $1 }')
+          git tag \
+            -a v$MAJOR_VERSION \
+            -m "$MAJOR_VERSION"
+          git tag -a latest -m "latest"
+          git push

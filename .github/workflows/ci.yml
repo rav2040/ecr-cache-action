@@ -50,4 +50,4 @@ jobs:
             -a v$MAJOR_VERSION \
             -m "$MAJOR_VERSION"
           git tag -a latest -m "latest"
-          git push
+          git push --follow-tags

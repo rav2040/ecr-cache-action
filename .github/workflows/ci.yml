@@ -33,7 +33,8 @@ jobs:
             | grep version \
             | head -1 \
             | awk -F: '{ print $2 }' \
-            | sed 's/[",]//g')
+            | sed 's/[",]//g' \
+            | xargs)
           echo "package_version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
 
       - name: Commit build output

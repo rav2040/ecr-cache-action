@@ -3,10 +3,9 @@
   "version": "1.0.9",
   "author": "Stuart Kennedy",
   "main": "lib/main.js",
-  "type": "module",
   "license": "MIT",
   "scripts": {
-    "build": "node esbuild.mjs"
+    "build": "rm -rf lib && node esbuild.mjs"
   },
   "dependencies": {
     "@actions/core": "^1.10.0",

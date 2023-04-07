@@ -5,10 +5,9 @@ const config = {
     minify: true,
     charset: "utf8",
     entryPoints: ["src/main.ts"],
-    outfile: "lib/main.mjs",
+    outfile: "lib/main.js",
     platform: "node",
     target: "node16",
-    format: "esm",
     mainFields: ["module", "main"],
 };
 

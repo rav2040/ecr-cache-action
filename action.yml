@@ -12,4 +12,4 @@ inputs:
     required: false
 runs:
   using: "node16"
-  main: "lib/main.mjs"
+  main: "lib/main.js"

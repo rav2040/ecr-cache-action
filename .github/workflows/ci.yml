@@ -28,7 +28,7 @@ jobs:
       - name: Bump version
         id: bump_version
         run: |
-          npm version patch
+          npm version patch --no-git-tag-version
           PACKAGE_VERSION=$(cat package.json \
             | grep version \
             | head -1 \

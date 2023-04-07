@@ -2,7 +2,8 @@
   "name": "ecr-cache-action",
   "version": "1.0.1",
   "author": "Stuart Kennedy",
-  "main": "lib/index.js",
+  "main": "lib/main.js",
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "build": "node esbuild.mjs"

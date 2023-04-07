@@ -6,13 +6,10 @@ inputs:
     required: true
   image-tag:
     description: "An image tag or list of image tags."
-    required: false
-  image-label:
-    description: "An image label."
-    required: false
+    required: true
   run-number:
     description: "The number of a previous workflow run."
     required: false
 runs:
   using: "node16"
-  main: "dist/index.js"
+  main: "lib/main.mjs"

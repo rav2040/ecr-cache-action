@@ -1,6 +1,6 @@
 {
   "name": "ecr-cache-action",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "author": "Stuart Kennedy",
   "main": "lib/main.js",
   "license": "MIT",

@@ -13,13 +13,13 @@ async function main() {
         execFileSync("docker", ["login", "--username", "AWS", "--password-stdin", repositoryUrl], { input: password });
 
         const pushImage = (tag: string) => {
-            const remoteTag = `${gitHubContext.runNumber}-${tag}`;
+            const remoteTag = `${gitHubContext.runNumber}-${encodeURIComponent(tag)}`;
             execFileSync("docker", ["tag", tag, `${repositoryUrl}:${remoteTag}`], { stdio: "inherit" });
             execFileSync("docker", ["push", `${repositoryUrl}:${remoteTag}`], { stdio: "inherit" });
         }
 
         const pullImage = (tag: string) => {
-            const remoteTag = `${runNumber}-${tag}`;
+            const remoteTag = `${runNumber}-${encodeURIComponent(tag)}`;
             execFileSync("docker", ["pull", `${repositoryUrl}:${remoteTag}`], { stdio: "inherit" });
             execFileSync("docker", ["tag", `${repositoryUrl}:${remoteTag}`, tag], { stdio: "inherit" });
             execFileSync("docker", ["rmi", `${repositoryUrl}:${remoteTag}`], { stdio: "inherit" });

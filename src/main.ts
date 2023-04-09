@@ -25,7 +25,7 @@ async function main() {
             execFileSync("docker", ["rmi", `${repositoryUrl}:${remoteTag}`], { stdio: "inherit" });
         }
 
-        const tags = imageTag.split(/\s+(?=([^"]*"[^"]*")*[^"]*$)/g).map((str) => str.trim()).filter(Boolean);
+        const tags = imageTag.split(/\s+(?=([^"]*"[^"]*")*[^"]*$)/g).filter(Boolean).map((str) => str.trim());
         const uniqueTags = Array.from(new Set(tags));
 
         uniqueTags.forEach(typeof runNumber !== "string" ? pushImage : pullImage)
